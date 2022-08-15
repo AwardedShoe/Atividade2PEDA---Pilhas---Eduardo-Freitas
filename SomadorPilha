@@ -1,0 +1,70 @@
+"""  --- Eduardo de Faria Freitas ---
+Sua  tarefa  será  construir  um  código  capaz de  somar,  item  a  item,  todos os  inteiros  entre  1  e 1.000.000.
+Existe, pelo menos uma fórmula matemática que pode ser usada para validar o resultado. 
+Contudo,  você  deverá  criar  uma  pilha,  armazenar  este  inteiros  nesta  pilha,  depois  percorrer a pilha somando estes valores. 
+A tarefa é para exercitar o uso de pilhas, não da matemática.  
+Seu  objetivo  será  medir  o  tempo  para  inserção  de  1.000.000  milhão  de  inteiros  em  uma 
+estrutura  de  dados  e  o  tempo  para  percorrer  e  somar  1.000.000  de  inteiros  em  uma  determinada estrutura de dados, e o tempo para garantir que um determinado inteiro já está na pilha. 
+Finalmente você deverá medir estes tempos percorrendo a pilha em dois sentidos. De cima para baixo e de baixo para cima. """
+
+import timeit
+import sys
+n = int()
+x = int()
+y = int()
+z = int()
+int(x) == 1
+pilha = []
+i = int()
+size = int(input("Digite o tamanho da lista: "))
+soma = 0
+
+for x in range(0, size):
+  x = x + 1
+  pilha.append(x)
+  
+
+for k in range(0, len(pilha)):
+  soma += pilha[k]
+
+print("soma dos itens: ",soma)
+
+print("----------------")
+
+t1 = timeit.timeit(lambda: pilha.append(x))
+print("tempo de preenchimento da pilha (s):\n",t1)
+print("----------------")
+t2 = timeit.timeit(lambda: soma)
+print("tempo de soma dos elementos da pilha (s):\n",t2)
+print("----------------")
+num = int(input("escolha um numero: "))
+if num <= len(pilha):
+  print("seu numero é:",num)
+print("----------------")
+
+for i in pilha:
+    i = pilha.pop()
+    if int(i) == num:
+        z = print("o numero",i ,"ta na lista")
+
+t3 = timeit.timeit(lambda: z)
+print("tempo de leitura de cima para baixo (s): ",t3)
+print("----------------")
+for x in range(0, size):
+  x = x + 1
+  pilha.append(x)
+  
+for n in pilha[::-1]:
+    n = pilha.pop()
+    if int(n) == num:
+        y = print("o numero",n ,"ta na lista")
+    
+print("----------------")
+
+t4 = timeit.timeit(lambda: y)
+print("tempo de leitura de baixo para cima (s): ",t4)
+
+print("----------------")
+
+
+sys.exit() #evita EOF error
